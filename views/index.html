@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Segredo da Existência</title>
+  <link rel="stylesheet" href="../src/styles/style.css">
+  <style>
+    /* Reset */
+    body, h1, form, input, button {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+      
+      /* Corpo */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #25232D; /* Fundo escuro */
+      color: #ffffff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Contêiner */
+    .container {
+      text-align: center;
+      background: #25232D;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Logo */
+    .logo img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      color: #ffffff;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+    
+    /* Formulário */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 10px 0px;
+    }
+    
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4A4A4A; /* Campo escuro */
+      color: #ffffff;
+    }
+    
+    input::placeholder {
+      color: #aaaaaa;
+    }
+    
+    button {
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #3D3772; /* Roxo escuro */
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #645e99; /* Roxo claro */
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="../src/components/LOGO.png">
+    </div>
+    <form id="register-form">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Senha" required>
+      <input type="text" name="gender" placeholder="Genero" required>
+      <button type="submit">CADASTRAR</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const formObject = Object.fromEntries(formData);
+      try {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formObject),
+        });
+        const result = await response.json();
+        alert(result.message);
+      } catch (error) {
+        alert('Erro ao registrar usuário.');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

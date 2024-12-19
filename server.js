@@ -1,27 +1,30 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-
+const dotenv = require('dotenv');
 const app = express();
 
-// Porta onde o servidor será executado
-const PORT = process.env.PORT || 3000;
-
-// Middleware para entender JSON
-app.use(express.json());
+// Configurações do servidor
+dotenv.config();
+app.use(express.json()); // Para aceitar JSON no corpo das requisições
 
 // Conexão com o banco de dados MongoDB
-mongoose.connect(process.env.MONGO_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 })
-.then(() => console.log('🟢 Conectado ao MongoDB com sucesso'))
-.catch(err => console.error('🔴 Erro ao conectar ao MongoDB', err));
+.then(() => console.log('✅ Conectado ao MongoDB!'))
+.catch(err => console.log('❌ Erro ao conectar ao MongoDB:', err));
 
-// Rota inicial para testar o servidor
+// Rotas de autenticação
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
+// Servir a página HTML
+const path = require('path');
 app.get('/', (req, res) => {
-  res.send('🟢 Servidor rodando com sucesso!');
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
-// Inicia o servidor na porta 3000
+// Inicialização do servidor
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
