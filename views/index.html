@@ -3,100 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cadastro - Segredo da Existência</title>
   <link rel="stylesheet" href="../src/styles/style.css">
-  <style>
-    /* Reset */
-    body, h1, form, input, button {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-      
-      /* Corpo */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #25232D; /* Fundo escuro */
-      color: #ffffff;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    /* Contêiner */
-    .container {
-      text-align: center;
-      background: #25232D;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-    }
-    
-    /* Logo */
-    .logo img {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-    .logo h1 {
-      font-size: 24px;
-      color: #ffffff;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-    }
-    
-    /* Formulário */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin: 10px 0px;
-    }
-    
-    input {
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      background-color: #4A4A4A; /* Campo escuro */
-      color: #ffffff;
-    }
-    
-    input::placeholder {
-      color: #aaaaaa;
-    }
-    
-    button {
-      padding: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      background-color: #3D3772; /* Roxo escuro */
-      color: #ffffff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    
-    button:hover {
-      background-color: #645e99; /* Roxo claro */
-    }
-  </style>
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
   <div class="container">
-    <div class="logo">
-      <img src="../src/components/LOGO.png">
+    <div class="content first-content">
+        <div class="first-column">
+            <img src="../src/components/LOGO.png" alt="Segredo na Existência" class="logo">
+            <button id="signin" class="btn btn-primary">LOGIN</button>
+        </div>    
+        <div class="second-column">
+            <h2 class="title title-second">Crie sua Conta</h2>
+            <form class="form" id="register-form">
+                <label class="label-input" for="username">
+                    <i class="far fa-user icon-modify"></i>
+                    <input type="text" id="username" name="username" placeholder="Usuário" required/>
+                </label>
+                
+                <label class="label-input" for="email">
+                    <i class="far fa-envelope icon-modify"></i>
+                    <input type="email" id="email" name="email" placeholder="Email" required/>
+                </label>
+                
+                <label class="label-input" for="password">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" id="password" name="password" placeholder="Senha" required/>
+                </label>
+                
+                <label class="label-input" for="gender">
+                  <i class="fas fa-venus-mars icon-modify"></i>
+                  <input type="text" id="gender" name="gender" placeholder="Gênero" required/>
+                </label>
+
+                <button class="btn btn-second" type="submit">confirmar</button>        
+            </form>
+        </div>
     </div>
-    <form id="register-form">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" name="password" placeholder="Senha" required>
-      <input type="text" name="gender" placeholder="Genero" required>
-      <button type="submit">CADASTRAR</button>
-    </form>
   </div>
+
   <script>
     document.getElementById('register-form').addEventListener('submit', async (e) => {
       e.preventDefault();
