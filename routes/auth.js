@@ -51,9 +51,9 @@ async function getRandomWeapon(userPower) {
 
 // Rota de cadastro de usuário
 router.post('/register', async (req, res) => {
-  const { username, email, password, gender } = req.body;
+  const { username, email, password } = req.body;
 
-  if (!username || !email || !password || !gender) {
+  if (!username || !email || !password) {
     return res.status(400).json({ message: 'Preencha todos os campos obrigatórios!' });
   }
 
@@ -83,7 +83,6 @@ router.post('/register', async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      gender,
       universe: randomUniverse,
       powers: randomPower,
       weapons: randomWeapon

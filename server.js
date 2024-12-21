@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path'); // Necessário para lidar com caminhos de arquivos
 const app = express();
 
 // Configurações do servidor
@@ -15,14 +16,16 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('✅ Conectado ao MongoDB!'))
 .catch(err => console.log('❌ Erro ao conectar ao MongoDB:', err));
 
+// Middleware para arquivos estáticos (CSS, JS, Imagens, etc.)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Rotas de autenticação
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
-// Servir a página HTML
-const path = require('path');
+// Servir a página HTML principal
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/views/index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); // A partir da pasta "public"
 });
 
 // Inicialização do servidor

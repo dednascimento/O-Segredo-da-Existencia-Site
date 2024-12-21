@@ -1,0 +1,189 @@
+:root {
+    /* Cores */
+    --color-primary: #16151b;
+    --color-primary-hover: #686377;
+    --color-secondary: #ecf0f1;
+    --color-background: #0d0d11;
+    --color-white: #fff;
+    --color-placeholder: #95a5a6;
+    --color-icon: #7f8c8d;
+
+    /* Tamanhos */
+    --border-radius: 15px;
+    --input-height: 30px;
+    --button-width: 100%;
+    --button-margin: 25px;
+    --button-padding: 10px;
+    --background-width: 220vw;
+    --container-width: 450px;
+    --container-max-width: 92%;
+    --form-width: 100%;
+    --font-size-input: 14px;
+    --logotipo: 250px;
+    --width-content: 65%;
+
+    /* Transições */
+    --transition-time: 0.5s;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../src/components/logo-background.png'); /* Caminho da imagem */
+    background-size: var(--background-width); /* Tamanho ajustável */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--color-background);
+}
+
+.container {
+    background-color: var(--color-primary);
+    width: var(--container-width);
+    max-width: var(--container-max-width); /* Para telas menores */
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header-logo {
+    width: var(--width-content);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.logo {
+    max-width: var(--logotipo);
+    min-width: 120px; /* Tamanho mínimo */
+    height: auto;
+}
+
+.content-register {
+    width: var(--width-content);
+    max-height: 80vh; /* Limita a altura em telas pequenas */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+    scrollbar-width: thin; /* Estiliza scrollbar */
+    scrollbar-color: var(--color-secondary) var(--color-background);
+}
+
+.content-register::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content-register::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius);
+}
+
+.content-register::-webkit-scrollbar-track {
+    background-color: var(--color-primary);
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.label-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-secondary);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-input);
+}
+
+label > input {
+    width: 110%; /* Tamanho ajustável */
+    height: var(--input-height);
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--color-primary);
+    font-size: var(--font-size-input);
+}
+
+label > input::placeholder {
+    color: var(--color-placeholder);
+}
+
+label > input:focus {
+    color: var(--color-primary);
+}
+
+label > i {
+    color: var(--color-icon);
+}
+
+.btn-submit-register {
+    margin-top: var(--button-margin);
+    background-color: var(--color-primary-hover);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--button-padding);
+    cursor: pointer;
+    transition: background-color var(--transition-time);
+    font-size: var(--font-size-input);
+    width: 100%; /* Ajusta para telas menores */
+}
+
+.btn-submit-register:hover {
+    background-color: var(--color-primary-hover);
+    color: var(--color-primary);
+    border: 1px solid var(--color-background);
+}
+
+@media screen and (max-width: 558px) {
+    .container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .logo {
+        max-width: 150px;
+        min-width: 100px; /* Mantém legibilidade */
+    }
+
+    label > input {
+        font-size: 13px;
+        height: 35px; /* Mantém confortável */
+    }
+
+    .btn-submit-register {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 355px) {
+    .container {
+        width: 100%;
+        padding: 20px 15px; /* Ajusta para telas muito pequenas */
+    }
+
+    .logo {
+        max-width: 100px;
+    }
+
+    label > input {
+        font-size: 12px;
+        height: 40px;
+    }
+
+    .btn-submit-register {
+        font-size: 12px;
+        padding: 12px; /* Aumenta área clicável */
+    }
+}
